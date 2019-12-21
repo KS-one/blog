@@ -17,7 +17,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 home = ["HTML", "RSS", "Algolia"]
 
 [params]
-  header_image = "background.jpg"
+  header_image = "background.png"
   SEOTitle = "Thirsty Day | ksone blog"
   description = "R언어 프로그래밍, 읽고 보고 기록"
   keyword = "R, Sangwonkim, 프로그래밍, 통계, 머신러닝, 딥러닝"

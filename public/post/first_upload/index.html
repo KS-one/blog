@@ -10,8 +10,8 @@
     <meta property="og:type" content="article">
 
     
-    <meta property="og:image" content="//background.jpg">
-    <meta property="twitter:image" content="//background.jpg" />
+    <meta property="og:image" content="//background.png">
+    <meta property="twitter:image" content="//background.png" />
     
 
     
@@ -161,7 +161,7 @@
 
 <style type="text/css">
     header.intro-header {
-        background-image: url('/background.jpg')
+        background-image: url('/background.png')
     }
 </style>
 <header class="intro-header">
@@ -236,8 +236,8 @@
 </center>
 <div id="hugo" class="section level5">
 <h5>1) Hugo</h5>
-<p>hugo란 마이크로소프트의 go언어(golang)로 작성된 정적 사이트 생성기(static site generator)입니다. 정적사이트는 파일들은 저장해서 사용자에게 그대로 전달되는 사이트를 말하며 빠른 속도와 보안을 자랑하게 됩니다. 이에 반해 동적으로 작동하는 사이트는 php와 sql을 필요로 하게 됩니다. 데이터베이스와 상호작용 하면서 데이터를 저장하거나 불러오게 되는 것이죠.
-그렇기 때문에 페이지를 만들어서 compile하고 serve하는 정적사이트와 서버 내부에서 request에 따라 response 되는 작업이 필요한 동적사이트 사이에는 속도 차이가 발생 하게 됩니다. 그리고 그 속도를 개선하기 위해 우리는 비용을 지불해야 했습니다.
+<p>hugo란 마이크로소프트의 go언어(golang)로 작성된 정적 사이트 생성기(static site generator)입니다. 정적사이트는 파일들은 저장해서 사용자에게 그대로 전달되는 사이트를 말하며 빠른 속도와 보안을 자랑하게 됩니다. 이에 반해 동적으로 작동하는 사이트는 php와 sql을 필요로 하게 됩니다. 데이터베이스와 상호작용 하면서 데이터를 저장하거나 불러오게 되는 것이죠.</p>
+<p>그렇기 때문에 페이지를 만들어서 compile하고 serve하는 정적사이트와 서버 내부에서 request에 따라 response 되는 작업이 필요한 동적사이트 사이에는 속도 차이가 발생 하게 됩니다. 그리고 그 속도를 개선하기 위해 우리는 비용을 지불해야 했습니다.
 더불어 정적 사이트에서는 데이터 베이스에 접근하기 위한 ID와 Password가 필요하지 않습니다. 때문에 보안상 이슈도 적게 발생하죠. 그 결과 사람들은 다시 정적사이트에 관심을 가지게 되었습니다.</p>
 <p>이름은 blogdown이지만 go언어는 단순하고 빠른 특징을 가지고 있기 때문에 blog 뿐만 아니라 웹사이트를 생성하는데도 사용할 수 있습니다. 운영체제에 대한 종속성도 없고(window, linux, mac) 수백페이지를 더 빠르게 렌더링할 수 있도록 설계 되있습니다. 다른 정적사이트 생성기인 Jekyll이나 Hexo와 보다 낫죠. hugo는 다음 파일과 폴더를 사용해서 웹사이트를 생성합니다.</p>
 <ul>
@@ -252,8 +252,8 @@
 </div>
 <div id="rmarkdown" class="section level5">
 <h5>2) Rmarkdown</h5>
-<p>Rmarkdown이란 r에서 pdf나 html, word 같은 형식의 파일로 전환 시킬수 있도록 만든 것입니다. 이것을 통해 쉽게 웹페이지 포스팅을 만들 수 있다고 생각하시면 됩니다. 우리는 rmd로 포스팅의 구조적인 형태를 다듬을 수 있습니다. 제목, 날짜, 글쓴이처럼 메타데이터 정보를 yaml 언어로 작성할 수 있고, 이미지나 코드, 강조와 같은 기능을 형식에 맞게 작성하여 포스트 할 수 있습니다. 처음 듣는 말이라면 어려울 수 있지만 한 번 보면 알 수 있을 정도로 구성 내용들이 간단합니다. Rmarkdown에 대한 내용은 다음에 추가적으로 포스트 해보도록 하겠습니다.</p>
-<p>그래서 blogdown의 프로세스는 1) hugo에서 원하는 theme을 선택하고 2) toml로 생성할 사이트 정보, 원하는 기능을 넣고, 3) rmd(Rmarkdown)을 사용해 포스트할 문서를 생성, 4) netilify를 사용해 배포하는 과정이라 할 수 있겠습니다.</p>
+<p>Rmarkdown이란 r에서 pdf나 html, word 같은 형식의 파일로 전환 시킬수 있도록 만든 것입니다. 이것을 통해 쉽게 웹페이지 포스팅을 만들 수 있다고 생각하시면 됩니다. 우리는 이것으로 포스팅의 구조적인 형태를 다듬을 수 있습니다. 제목, 날짜, 글쓴이처럼 메타데이터 정보를 yaml 언어로 작성할 수 있고, 이미지나 코드, 강조와 같은 기능을 형식에 맞게 작성하여 포스트 할 수 있습니다. 처음 듣는 말이라면 어려울 수 있지만 한 번 보면 알 수 있을 정도로 구성 내용들이 간단합니다. Rmarkdown에 대한 내용은 다음에 추가적으로 포스트 해보도록 하겠습니다.</p>
+<p>그래서 blogdown의 프로세스는 1) hugo site에서 원하는 theme을 선택하고 2) toml로 생성할 사이트 정보, 원하는 기능을 넣고, 3) rmd(Rmarkdown)을 사용해 포스트할 문서를 생성, 4) netilify를 사용해 배포하는 과정이라 할 수 있겠습니다.</p>
 </div>
 </div>
 
