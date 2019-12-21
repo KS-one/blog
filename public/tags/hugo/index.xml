@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hugo on ThiRsty Day</title>
+    <link>/tags/hugo/</link>
+    <description>Recent content in Hugo on ThiRsty Day</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-kr</language>
+    <lastBuildDate>Sat, 21 Dec 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[blogdown] R로 블로그만들기 (1)</title>
+      <link>/post/first_upload/</link>
+      <pubDate>Sat, 21 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/first_upload/</guid>
+      <description>blogdown이란 무엇인가? 오늘은 blogdown package에 대해 소개하려 합니다. blogdown은 두가지 주요한 특징을 가지고있습니다. hugo와 rm</description>
+    </item>
+    
+  </channel>
+</rss>
