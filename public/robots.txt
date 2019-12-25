@@ -1,2 +1,4 @@
 User-agent: Yeti
 Allow:/
+
+https://ksone.netlify.com/sitemap.xml
