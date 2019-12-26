@@ -5,6 +5,7 @@ date: "`r format(Sys.Date())`"
 categories: [R]
 tags: ["Hugo", "R", "블로그", "rmarkdown", "blogdown"]
 showtoc: false
+sitemapExclude : TRUE
 ---
 
 ```{r setup, include=FALSE}

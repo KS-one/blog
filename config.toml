@@ -1,4 +1,4 @@
-baseurl = "https://ksone.netlify.com"
+baseurl = "/"
 title = "ThiRsty Day"
 theme = "hugo-theme-cleanwhite"
 languageCode = "ko-kr"
