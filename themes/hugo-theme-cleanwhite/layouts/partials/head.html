@@ -10,6 +10,15 @@
     <!-- HTML tag for google and naver webmaster verification -->
     <meta name="naver-site-verification" content="860f10f87caf5320a535f1d9c4811ec284b4c120"/>
     <meta name="google-site-verification" content="l2RrHpNRHyo7d-ADhOctFkmd4hYiAZXmFzbm80eu8-g" />
+    
+    
+    
+    <!-- RSS -->
+    {{ range .AlternativeOutputFormats -}}
+    {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
+    {{ end -}}
+    <link rel="alternate" type="application/rss+xml" href="https://example.com/index.xml" title="Site Title">
+
  
   
 
