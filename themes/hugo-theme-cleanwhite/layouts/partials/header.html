@@ -2,6 +2,11 @@
   <div id='site-title' class='site-title'>
     {{ if ( ne .Site.Title "" ) }}
     <a href="{{ .Site.BaseURL | relLangURL }}"> {{ .Site.Title }} </a>
+        <!-- RSS -->
+    {{ range .AlternativeOutputFormats -}}
+    {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
+    {{ end -}}
+    <link rel="alternate" type="application/rss+xml" href="https://ksone.netlify.com/index.xml" title="Site Title">
     {{ end }}</div>
   </div>
   <button id="toggle-navigation" class="toggle-navigation">
