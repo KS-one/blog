@@ -1,11 +1,10 @@
 ---
 title: "[blogdown] R로 블로그만들기 (1)"
 author: "Sangwon"
-date: "`r format(Sys.Date())`"
+date: "2019-12-21"
 categories: [R]
 tags: ["Hugo", "R", "블로그", "rmarkdown", "blogdown"]
 showtoc: false
-sitemapExclude : TRUE
 ---
 
 ```{r setup, include=FALSE}
