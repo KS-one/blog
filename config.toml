@@ -56,7 +56,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
   # Highlight.js theme 코드보여지는 형식들
   # demo: https://highlightjs.org/static/demo/
-  highlightjs = "darcular"
+  highlightjs = "Hybrid"
 
   [params.social]
   rss            = true 
