@@ -1,7 +1,7 @@
 ---
 title: "[blogdown] R로 블로그 만들기(3)"
 author: "Sangwon"
-date: "2020년 1월 2일"
+date: "2020-01-02"
 categories: [R]
 tags: ["r", "git", "hugo", "블로그다운", "블로그", "blogdown"]
 showtoc: false
