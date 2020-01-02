@@ -1,0 +1,60 @@
+---
+title: "[blogdown] R로 블로그 만들기(3)"
+author: "Sangwon"
+date: "2020년 1월 2일"
+categories: [R]
+tags: ["r", "git", "hugo", "블로그다운", "블로그", "blogdown"]
+showtoc: false
+---
+
+
+
+<div id="git-설치" class="section level5">
+<h5>1) git 설치</h5>
+<p>github를 처음 사용하신다면 회원가입(sign up)후 로그인하여 start a project를, 기존 사용자라면 New repository를 만들어 줍시다. 우리는 그 저장소에 웹페이지를 올리고 업데이트 할 예정입니다. 처음 r에서 git을 이용 하신다면 git도 설치해주어야 하는데요. 아래 링크를 통해 설치 할 수 있습니다.</p>
+<ul>
+<li>window : <a href="http://git-scm.com/download/win." class="uri">http://git-scm.com/download/win.</a></li>
+<li>mac : <a href="http://git-scm.com/download/mac." class="uri">http://git-scm.com/download/mac.</a></li>
+<li>ubuntu : sudo apt-get install git-core.</li>
+<li>other linux distros : <a href="http://git-scm.com/download/linux." class="uri">http://git-scm.com/download/linux.</a></li>
+</ul>
+<p>설치 후 협업 하는 다른 사람들을 구분짓기 위해 user name과 email을 설정해 주어야 합니다. git cmd를 켜서 다음을 입력해 주시면 git 준비가 완료 됩니다.</p>
+<pre><code>git config --global user.name &quot;사용자 이름&quot;
+git config --global user.email &quot;이메일&quot;</code></pre>
+</div>
+<div id="r에서-git-이용하기" class="section level5">
+<h5>2) r에서 git 이용하기</h5>
+<p>다시 r로 돌아와, tools &gt; project options, Git/SVN을 눌러서 (None)을 Git으로 바꾸어 줍니다. 그러면 오른쪽 상단 Environment/History 창에 Git이 생긴것을 볼수 있습니다.</p>
+<center>
+<img src="/post/blogdownr2/git.png" alt="blogdowngit" />
+</center>
+<p>r console 창의 Terminal 탭에서 1) git 설치에서 만든 git 저장소, 새 repo를 등록해줍니다.</p>
+<pre><code># In ternminal
+git remote add origin master https://github.com/아이디/아까 만든 repo명
+git push -u origin master</code></pre>
+<p>git 탭의 노란색 물음표는 아직 버전 관리가 되지 않은 파일들입니다. Local(내컴퓨터) 환경의 모든 작업들은 모두 git으로 업데이트 되는 것이 아닙니다. 업데이트 시킬 작업들을 1) staged 시켜주고 2) commit을 작성해 3) push 해야 합니다.</p>
+<p>staged 버튼을 클릭하면 파란색 또는 초록색으로 변경됩니다.(아마 theme이였나? 처음 업로드 할 때 클릭을 했는데 안 바뀌고 오래걸리는 경우가 발생하기도 한다고 합니다. 그런 경우 재시도 하거나 terminal창을 통해 입력하는 방법을 대안으로 사용 하면 된다고 합니다.) commit을 누르면 commit message를 입력하는 창이 나옵니다. commit을 할 때 무엇을 위한 commit인지 대략적인 요약이 필요하죠. 메시지를 입력하고 commit을 눌러주면 됩다. 그리고 commit 내용을 push를 하면 git으로 변경된 내용들이 업데이트가 됩니다.</p>
+<center>
+<img src="/post/blogdownr2/gitcommit.png" alt="gitcommit" />
+</center>
+<pre><code># In terminal
+git push origin master</code></pre>
+</div>
+<div id="작업-이해하기" class="section level5">
+<h5>3) 작업 이해하기</h5>
+<p>hugo를 구성하는 주요 폴더들을 간단하게 이해해 봅시다. 1) post할 문서들은 반드시 content/post에 저장해야 합니다. 2) 사진과 같은 다른 정적파일들은 보통 static 폴더에 저장합니다. 이렇게 serve된 파일들은 3) public 폴더를 통해 나타나게 됩니다. 그래서 gitignore 파일에 public을 추가적으로 입력 해놓는 것이 시간적으로 효율적이라 할 수 있습니다.</p>
+<p>themes는 사이트 구조들을 잡아 놓은 것입니다. head나 disqus(댓글), sidebar, font와 같은 것들을 themes의 layouts서 살펴볼 수 있고 그것들을 수정할 수도 있죠. 이것 때문에 우리는 간단하게 페이지를 작성할 수 있다고 볼 수 있습니다.</p>
+config.toml은 홈페이지의 타이틀, 타이틀 사진, seo, googleanalytics, 언어, 테마 색깔 등처럼 기본적인 데이터들을 집어넣을 수 있습니다. 저는 이전의 <a href="https://ksone.netlify.com/post/r%EB%A1%9C_%EB%B8%94%EB%A1%9C%EA%B7%B8_%EB%A7%8C%EB%93%A4%EA%B8%B02/">r로 블로그 만들기(2)</a>의 마지막 부분에서 hugo-theme-pure 테마를 선택했었습니다. theme을 선택하다보면 toml 데이터를 비워놓은 경우가 있는데 이럴때 보통 config.yml을 toml로 변환 시켜줘서 자신의 정보를 넣으면 됩니다. yaml to toml을 검색해보면 변환기가 나옵니다.
+<center>
+<img src="/post/blogdownr2/toml.jpg" alt="toml" />
+</center>
+<p>최근에 업데이트 된(2020.1.2일 기준) academic theme은 toml이 아닌 post folder에 개인 정보들을 등록한 경우도 있네요. md 파일을 수정해주거나 불필요한 파일들을 삭제해주시면 되겠습니다. 등록자마다 게시 방식이 다르기 때문에 해당 theme github 페이지의 issue나 등록자들이 올려놓은 파일들을 읽어볼 필요가 있음을 말하고 싶습니다.</p>
+</div>
+<div id="블로그-배포하기" class="section level5">
+<h5>4) 블로그 배포하기</h5>
+<pre><code># 로컬 환경에서 배포될 홈페이지 살펴보기
+library(blogdown)
+serve_site()
+#http://127.0.0.1:4321/ 을 누르면 로컬 홈페이지가 뜸. 보통 저는 serve_site를 통해 rmd파일을 html로 변환하고 git push하여 블로그를 업데이트 합니다.</code></pre>
+<p>저도 이 블로그를 blogdown을 사용하고 netlify를 통해 배포하고 있습니다. 가입을 해서 git repo를 선택하여 deploy site를 눌러주면 해당 사이트가 배포됩니다. 도메인을 가지고 있다면 domain setting의 custom domain을 통해 변경할수도 있고, setting의 sitename을 통해 이름을 변경해 줄수도 있습니다.</p>
+</div>
