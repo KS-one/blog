@@ -1,8 +1,5 @@
-User-agent: Yeti
-<<<<<<< HEAD
-Allow:/
-=======
-Allow:/
+User-agent: *
+Allow: /
 
 https://ksone.netlify.com/sitemap.xml
->>>>>>> 5970ce9b0a8e63c8ca4845706f6c54b35a28b167
+
