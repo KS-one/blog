@@ -1,0 +1,54 @@
+---
+title: "[blogdown] R로 블로그 만들기 (2)"
+author: "Sangwon"
+date: "`r format(Sys.Date())`"
+categories: [R]
+tags: ["Hugo", "R", "블로그", "rmarkdown", "blogdown"]
+showtoc: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+박찬엽님의 박박사의 r코홀릭!을 시청하다가 만든 블로그다운 듀토리얼 작업을 게시하게 되었습니다. 발생할 만한 문제, 관련된 해결방안과 진행 과정에 대해 몇차례에 걸쳐 포스팅 하도록 하겠습니다.
+
+##### 1) blogdown package 설치
+```
+#cran에서 설치
+install.packages("blogdown")
+
+#또는 github
+library(devtools)
+remotes::install_github('rstudio/blogdown')
+
+#다운로드 휴고
+library(blogdown)
+install_hugo(blogdown)
+```
+
+##### 2) 작업 환경 설정
+File > New project > New Directory를 선택하여 작업이 수행될 위치를 정해주는 작업을 할 예정입니다. 다른 작업을 하거나 컴퓨터 문제로 다시 해야 되는 경우가 발생한다면 New Directory 대신 Existing Directory를 선택하면 기존의 작업 환경으로 돌아오게 됩니다.
+<center>
+![dirblogdown1](/post/blogdownr/dirblogdown1.png)
+</center>
+코딩이 편하시다면 아래 코드를 사용해도 되지만 hugo theme을 선택하는 과정을 넘어가기 때문에 git clone을 통해 해당내용을 불러와서 진행해야 될겁니다. 때문에 앞선 내용대로 진행하는 것이 더 이해가 쉽습니다.
+```
+create_project("프로젝트명")
+```
+
+##### 3) project type을 website using hugo로 선택해 줍니다.
+<center>
+![dirblogdown2](/post/blogdownr/dirblogdown2.png)
+</center>
+
+##### 4) 원하는 위치를 설정하고 휴고 theme을 선택합니다.
+hugo theme은 구글에 hugo theme을 검색하거나 [휴고 테마](https://themes.gohugo.io/)를 통해 찾아 볼 수 있습니다. 원하는 테마를 클릭하면 데모와 다운로드, 제공자의 홈페이지(설명이 들어간 홈페이지가 나오거나 해당 테마를 사용해 만든 본인의 블로그 등)를 볼수 있습니다. 
+
+거기서 download를 클릭하면 해당 theme으로 등록된 github가 나옵니다. github.com 주소 뒷부분인 게시자/테마이름을 Hugo theme에 넣어주시면 됩니다. 보통 hugo-academic 문서의 설명들이 잘 되어 있기 때문에 해당 테마를 사용하면 쉽게 적용해 볼수 있습니다. 저는 여기서 xiaoheiAh의 hugo-theme-pure의 테마를 임의로 선택해 보았습니다. 
+
+<center>
+![dirblogdown2](/post/blogdownr/setname.png)
+</center>
+
+자 이제 첫걸음이 끝났습니다. 이제 git을 설치하고, 내 웹사이트의 설정들을 변경 해보도록 하겠습니다.

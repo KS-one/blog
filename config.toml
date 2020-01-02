@@ -8,13 +8,17 @@ googleAnalytics = ""
 preserveTaxonomyNames = true
 paginate = 5 #frontpage pagination
 hasCJKLanguage = true
+sitemapExclude =true
 
 
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
 
 [outputs]
-home = ["HTML", "RSS", "Algolia"]
+  home = ["HTML", "RSS", "Algolia"]
+  section = [ "HTML", "RSS" ]
+  taxonomy = [ "HTML", "RSS" ]
+  taxonomyTerm = [ "HTML", "RSS" ]
 
 [params]
   header_image = "img/background.png"
@@ -52,7 +56,7 @@ home = ["HTML", "RSS", "Algolia"]
 
   # Highlight.js theme 코드보여지는 형식들
   # demo: https://highlightjs.org/static/demo/
-  highlightjs = "darcular"
+  highlightjs = "Hybrid"
 
   [params.social]
   rss            = true 
