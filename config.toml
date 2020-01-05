@@ -4,7 +4,7 @@ theme = "hugo-theme-cleanwhite"
 languageCode = "ko-kr"
 # Enable comments by entering your Disqus shortname
 disqusShortname = "ksone"
-googleAnalytics = "UA-131114985-1"
+googleAnalytics = "UA-131114985-2"
 preserveTaxonomyNames = true
 paginate = 5 #frontpage pagination
 hasCJKLanguage = true
