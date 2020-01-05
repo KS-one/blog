@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
 
-https://ksone.netlify.com/sitemap.xml
+https://ksone.netlify.com/index.xml
 
