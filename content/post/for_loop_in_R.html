@@ -1,0 +1,74 @@
+---
+title: "[Tip] R에서 for loop가 좋지 않다고?"
+author: "Sangwon"
+date: "2020-01-05"
+categories: [R]
+tags: ["R", "for", "loop", "tip", "foreach", "병렬프로그래밍"]
+showtoc : false
+---
+
+
+
+<p>루프문은 모든 프로그래밍의 기본이 되죠. 최적화나 자동화처럼 반복적인 작업들이 필요할때 우리는 for loop를 찾게 됩니다.
+하지만 이런 for loop가 r에서 속도저하를 일으킬 수 있다는 사실을 알고계신가요?</p>
+<div id="데이터-집합을-증가시키지-말자." class="section level5">
+<h5>1) 데이터 집합을 증가시키지 말자.</h5>
+<p>데이터를 생산하는 과정에서 for loop를 사용한다면 아래와 같은 오류를 범할 수 있습니다. 1부터 100,000의 순열을 벡터로 생성하는 3가지 케이스에 대해 살펴봅시다.</p>
+<pre class="r"><code># Case 1
+test1 &lt;- function(){
+  y &lt;- 1:100000
+} 
+# Case 2
+test2 &lt;- function(){
+  y &lt;- numeric(100000)
+  for (i in 1:100000) y[i] &lt;-i
+}
+# Case 3
+test3 &lt;- function(){
+  y &lt;- NULL
+  for (i in 1:100000) y &lt;-c(y, i)
+}</code></pre>
+<p>test 1은 단순하게 내장된 함수를 사용한 것입니다. test2는 공간을 사전할당해서 변수들을 부여한 것이죠. test3은 루프를 생성할때마다 벡터의 오른쪽 공간을 만들어서 새로운값을 추가하는 방식이죠.(1루프에선 numeric(1) 2루프는 numeric(2)처럼 최종 100000까지 공간을 반복 할당해주는 작업입니다.) 이렇게 매번 공간을 할당해주어야 하는 작업은 보기에도 매우 비효율적이라고 할수 있죠. 저 역시 크롤링하다 보면 이런 비효율적인 실수를 하곤 했습니다. 그럼 케이스들의 속도를 계산해봅시다.</p>
+<pre class="r"><code># Case 1 test
+system.time(test1()) </code></pre>
+<pre><code>##  사용자  시스템 elapsed 
+##       0       0       0</code></pre>
+<pre class="r"><code># Case 2 test
+system.time(test2()) </code></pre>
+<pre><code>##  사용자  시스템 elapsed 
+##       0       0       0</code></pre>
+<pre class="r"><code># Case 3 test
+system.time(test3()) </code></pre>
+<pre><code>##  사용자  시스템 elapsed 
+##   12.44    0.05   12.49</code></pre>
+<pre class="r"><code># sapply case
+x = 1:100000
+system.time(y &lt;- sapply(x, function(i) i))</code></pre>
+<pre><code>##  사용자  시스템 elapsed 
+##    0.05    0.00    0.04</code></pre>
+<p>저는 컴퓨터의 성능 때문에 사전할당한 것도 0에 가깝게 나오지만, 수를 늘려서 다시 해보면 test1이 2보다 더 빠르게 나옵니다. 여유공간을 미리 할당해놓는 것이 속도적으로 좋은 성능을 보여줄 수 있습니다.</p>
+</div>
+<div id="비효율적인-프로그래밍" class="section level5">
+<h5>2) 비효율적인 프로그래밍</h5>
+<p>우리는 쓸데없는 프로그래밍을 하는데 시간을 쓰곤 합니다. 예를 들어서 최소값을 구하는 문제에 대해 for loop와 min을 비교해 봅시다.</p>
+<pre class="r"><code># 난수 생성
+set.seed(1)
+
+# min 함수
+x &lt;- runif(10000000)
+system.time(min(x))</code></pre>
+<pre><code>##  사용자  시스템 elapsed 
+##    0.01    0.00    0.02</code></pre>
+<pre class="r"><code># for loop for min
+cmin &lt;- x[1]
+system.time(for (i in 2:10000000) {
+  if(x[i]&lt;cmin) cmin &lt;-x[i]
+})</code></pre>
+<pre><code>##  사용자  시스템 elapsed 
+##    0.40    0.00    0.41</code></pre>
+<p>base 함수들은 좋은 성능을 냅니다. Rccp(c언어)의 for loop는 좋은 성능을 내며 속도 문제의 대안이 되고 있습니다. 어찌됐든 모든 문제는 간단하게 해결될 수 있는지 생각해봐야 합니다.</p>
+</div>
+<div id="여담-및-결론" class="section level5">
+<h5>여담 및 결론</h5>
+<p>foreach(병렬프로그래밍)를 사용할때도 속도저하가 발생되는 경우가 있는데요. 바로 병목현상입니다. 루프를 두개 씌웠을때 다른 루프의 처리를 기다려야 할때 속도가 for보다 더 느리게 나오는 경우가 발생합니다. 보통 느려지는 경우가 있더라도 대부분 for loop는 기본적이며 빠르게 생각해낼수 있는 아이디어가 됩니다. 만약 우리의 for loop가 속도가 느리다고 느껴진다면 간단하게 생각할 수 없는지 고민해봐야 합니다.</p>
+</div>
