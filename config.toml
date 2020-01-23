@@ -92,22 +92,11 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
   #[[params.bookmark_link]]
   #title = "unsplash"
   #href = "https://unsplash.com"
-  
-  [[params.addtional_menus]]
-  title =  "분석"
-  href =  "/top/분석/"
-  weight = 3
-  [[params.addtional_menus]]
-  title =  "LIFE"
-  href =  "/top/LIFE/"
-  weight = 4
-  [[params.addtional_menus]]
-  title =  "book & movie"
-  href =  "/top/bookmovie/"
-  weight = 5
+
+
   [[params.addtional_menus]]
   title =  "ABOUT"
-  href =  "/top/about/"
+  href =  "/categories/about/"
   weight = 6
 
 [outputFormats.Algolia]
