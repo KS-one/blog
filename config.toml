@@ -16,12 +16,9 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
 [outputs]
   home = ["HTML", "RSS", "Algolia"]
-  section = [ "HTML", "RSS" ]
-  taxonomy = [ "HTML", "RSS" ]
-  taxonomyTerm = [ "HTML", "RSS" ]
 
 [params]
-  header_image = "img/background.png"
+  header_image = "img/background.webp"
   SEOTitle = "Thirsty Day | ksone blog"
   description = "R언어 프로그래밍, 읽고 보고 기록"
   keyword = "R, Sangwonkim, 프로그래밍, 통계, 머신러닝, 딥러닝"
@@ -94,10 +91,10 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
   #href = "https://unsplash.com"
 
 
-  [[params.addtional_menus]]
-  title =  "ABOUT"
-  href =  "/categories/about/"
-  weight = 6
+  #[[params.addtional_menus]]
+  #title =  "ABOUT"
+  #href =  "/top/about/"
+  #weight = 6
 
 [outputFormats.Algolia]
 baseName = "algolia"
