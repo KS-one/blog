@@ -1,0 +1,29 @@
+---
+title: "[OOP] 객체 지향 프로그래밍과 base type"
+author: "Sangwon"
+date: "2020-01-30"
+categories: [R]
+tags: ["R", "OOP", "객체 지향 프로그래밍", "객체", "base type"]
+showtoc: false
+---
+
+
+
+<div id="객체-지향-프로그래밍object-oriented-programming" class="section level5">
+<h5>1) 객체 지향 프로그래밍(Object-oriented programming)</h5>
+<p>객체 지향 프로그래밍이란 컴퓨터 프로그램을 명령어의 목록이 아니라 여러개의 독립된 단위, 즉 “객체”들의 모임으로 파악하고자 하는 것입니다. 객체 지향 프로그래밍을 통해 객체들은 메시지를 주고받고 데이터를 처리하게 되죠.(위키디피아)</p>
+<p>지금부터 객체 지향 프로그래밍을 OOP라 기술하겠습니다. OOP는 다른 언어들보다 R에서 약간 어려울 수 있습니다. 왜냐하면 여러개의 OOP를 사용 할수 있기 때문입니다. 해들리 위컴은 S3, S4, R6가 중요하다고 말하는데, 사람에 따라 ‘S3가 중요하다.’ ‘아니다, S4가 가장 중요하고 그다음은 R6다.’ 이렇게 선호하는 방식이 다른 모습을 보이고 있습니다. 각 사람들(커뮤니티) 마다 선호하는 방법이 다르다는 점은 좀 피곤하게 만들죠.</p>
+<p>그래서 앞으로 Base type과 이 세가지 S3, S4, R6 에 대해 알아 볼 예정입니다.(Advanced R 한글 번역서에서는 S3, S4, RC를 다루고 있습니다. 하지만 최근 advanced R 문서를 따르면 RC와 R6는 유사하지만 몇가지 문제를 해결했기 때문에 R6에 대한 내용을 볼 필요가 있다고 말합니다. 현재 S3, S4, RC는 baseR에서 제공하는 OOP System 이지만, R6는 CRAN에 등록되어 있는 패키지중 하나입니다.)</p>
+</div>
+<div id="베이스-타입" class="section level5">
+<h5>2) 베이스 타입</h5>
+<p>보통 일반적으로 객체와 객체 지향을 구분한다는 것이 중요한 문제는 아니지만, 이해를 위해 구분할 필요가 있습니다. R에 존재하는 모든 것은 객체이지만 객체지향이 아닐수 있습니다. 베이스 타입은 OOP의 포맷과 다릅니다. 베이스 타입은 객체가 메모리에 저장되는 방법을 C 언어로 기술한 것입니다. 메모리 관리에 필요한 정보인 객체의 내용과 여기서 가장 중요하게 다루는 타입을 포함한 것입니다. 베이스 타입은 R 코어팀만 새로운 유형을 생성할 수 있기 때문에 객체 시스템이 아니며, 새로운 베이스 타입은 거의 추가되지 않습니다. 현재 25가지의 베이스 타입이 존재하며, 이 타입들은 C code에서 중요하기 때문에 C type이라고 부르기도 합니다. 크게 6가지로 구성되며, <a href="https://adv-r.hadley.nz/base-types.html#base-types-2">12.3 Base type</a>에서 그 세부 구성들을 살펴 볼수 있습니다.</p>
+<ol style="list-style-type: decimal">
+<li>Vectors</li>
+<li>Functions</li>
+<li>Environments</li>
+<li>s4 types</li>
+<li>Language components</li>
+<li>The remaining types (c언어에서는 중요하지만 r에서는 거의 볼수 없거나 이해하기 어려운 것들.)</li>
+</ol>
+</div>
