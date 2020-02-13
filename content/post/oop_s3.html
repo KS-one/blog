@@ -1,0 +1,67 @@
+---
+title: "[OOP] S3"
+author: "Sangwon"
+date: "2020-02-03"
+categories: [R]
+tags: ["R", "OOP", "객체 지향 프로그래밍", "객체", "S3", "advanced r"]
+showtoc: false
+---
+
+
+
+<div id="s3" class="section level6">
+<h6>3) S3</h6>
+<p>S3는 R의 첫번째 OOP system 이자 가장 단순하고 쉽게 볼 수 있는 OO system입니다. 대부분의 패키지가 S3로 구성되어 있고 baseR 전반에 걸쳐 사용되기 때문에 base R function을 확장하여 작업을 하기 위해선 이해하고 있는 것이 좋겠죠.<br />
+우선 S3로 되어 있는 것들을 살펴봅시다. generic은 중개인의 역할을 말합니다. sloop package의 ftype 함수를 이용하여 S3 제너릭인지를 살펴볼 수 있습니다.</p>
+<p>S3 제너릭의 역할(job)은 올바른 S3 메소드를 호출(method dispatch)하는 것입니다. 그래서 소스 코드를 통해 Usemethod 호출이 있는지를 보는 것으로 S3 제너릭인지를 확인하는 방법도 있습니다. 하지만 어떤 S3 제너릭은 C 코드로 구현되어 있기도 해서 S3 제너릭을 반드시 구분할 수 있다!?는 것은 아닙니다.(저는 처음 읽을때 이 부분에서 base type과 헷갈렸는데 base type은 저장되는 방식을 기술한 것으로 LGLSXP(logical), INTSXP(integer) 이런 형태로 나타납니다. 어떤 함수를 C코드로 구현한 방법과는 확실히 다르다는 말이죠.) 내부 제네릭 도움말 문서 (?“internal generic”)에서 C 코드로 구현된 함수들을 살펴 볼수도 있습니다.</p>
+<pre class="r"><code>library(sloop)
+## Warning: 패키지 &#39;sloop&#39;는 R 버전 3.5.3에서 작성되었습니다
+ftype(integer) # base type
+## [1] &quot;internal&quot;
+ftype(sum) # group generic
+## [1] &quot;primitive&quot; &quot;generic&quot;
+ftype(str)
+## [1] &quot;S3&quot;      &quot;generic&quot;
+sum
+## function (..., na.rm = FALSE)  .Primitive(&quot;sum&quot;)
+str
+## function (object, ...) 
+## UseMethod(&quot;str&quot;)
+## &lt;bytecode: 0x000000001465afc8&gt;
+## &lt;environment: namespace:utils&gt;</code></pre>
+<pre class="r"><code>sloop::s3_methods_generic(&quot;mean&quot;) # mean 함수는 어떤 method를 호출하는가를 보니 date, posixct type의 method를 호출 할수도 있네요.
+## # A tibble: 6 x 4
+##   generic class    visible source             
+##   &lt;chr&gt;   &lt;chr&gt;    &lt;lgl&gt;   &lt;chr&gt;              
+## 1 mean    Date     TRUE    base               
+## 2 mean    default  TRUE    base               
+## 3 mean    difftime TRUE    base               
+## 4 mean    POSIXct  TRUE    base               
+## 5 mean    POSIXlt  TRUE    base               
+## 6 mean    quosure  FALSE   registered S3method</code></pre>
+<p>사실 다른 언어로 OOP를 해 본 경우 S3 class에 대한 공식적인 정의가 없다는 사실에 놀랄지도 모릅니다. 이것이 쉽고 유연한 프로그래밍을 제공하지만 혼돈을 피하기 위해 알고 가야 하는 부분이 있죠.<br />
+예를 들어서 회귀(lm())문제의 결과에서 class를 바꿀 수 있지만, 우리는 굳이 그럴 필요는 없죠.(원서에서는 이런 유연함을 자기 발을 겨냥하고 방아쇠를 당기지 않는 한 문제가 발생하지 않는다고 표현합니다. R doesn’t stop you from shooting yourself in the foot, but as long as ou don’t aim the gun at your toes and pull the trigger, you won’t have a problem.) 또 class 이름에 .을 쓰지말고 _을 쓰는 것을 권장하는데 generic과 class를 구분하는데 좋기 때문입니다.</p>
+<p>우리는 S3 class를 쉽게 만들어 볼 수 있습니다. 우리는 structure()을 사용하거나, 만들고 class를 설정하는 방식으로 class attribute를 간단히 만들 수 있습니다. 아래 예제를 통해 보시죠.</p>
+<pre class="r"><code># 한번에
+x &lt;- structure(list(), class = &quot;my_class&quot;)
+x
+## list()
+## attr(,&quot;class&quot;)
+## [1] &quot;my_class&quot;
+
+# 만들고 class 설정
+x &lt;- list()
+class(x) &lt;- &quot;my_class&quot;
+
+# x의 클래스는?
+class(x)
+## [1] &quot;my_class&quot;
+
+# class의 속성 혹은 행위인가?(check class instance)
+inherits(x, &quot;my_class&quot;)
+## [1] TRUE</code></pre>
+<p>class를 만들때 3가지 기능을 제공하는 것이 좋다고 합니다. 1) constructor, 2) validator, 3) helper입니다. 로컬 환경에서 사용할거면 consturctor만 있어도 되겠죠. 그러나 개발을 지속적으로 관리하고 싶거나 다른 사람을 위해 공개하기 위해선 나머지 기능들도 필요하게 될겁니다. 다음을 통해 더 알아 볼 수 있습니다. <a href="https://adv-r.hadley.nz/s3.html#s3-constructor">13.3 Classes</a></p>
+<blockquote>
+<p>해당 문서는 Advanced R second edition(국내 미발매), Advanced R, R6 Cran package의 설명을 읽고 기록과 이해를 돕기 위해 작성했습니다.</p>
+</blockquote>
+</div>

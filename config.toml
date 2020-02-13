@@ -53,7 +53,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
   # Highlight.js theme 코드보여지는 형식들
   # demo: https://highlightjs.org/static/demo/
-  highlightjs = "Hybrid"
+  highlightjs = "hybrid"
 
   [params.social]
   rss            = true 
@@ -97,7 +97,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
   #weight = 6
 
 [outputFormats.Algolia]
-baseName = "algolia"
+baseName = "4M5FQ34CQH"
 isPlainText = true
 mediaType = "application/json"
 notAlternative = true
