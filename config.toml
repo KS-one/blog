@@ -93,7 +93,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
   #[[params.addtional_menus]]
   #title =  "ABOUT"
-  #href =  "/top/about/"
+  #href =  "/about/"
   #weight = 6
 
 [outputFormats.Algolia]
