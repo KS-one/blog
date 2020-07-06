@@ -108,7 +108,6 @@ params = ["categories", "tags"]
 
 enableRobotsTXT = true
 
-
 [sitemap]
 changefreq = "hourly"
 filename = "sitemap.xml"
