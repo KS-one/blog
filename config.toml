@@ -106,6 +106,8 @@ notAlternative = true
 vars = ["title", "summary", "date", "publishdate", "expirydate", "permalink"]
 params = ["categories", "tags"] 
 
+enableRobotsTXT = true
+
 
 [sitemap]
 changefreq = "hourly"
