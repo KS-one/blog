@@ -1,4 +1,4 @@
-baseurl = "/"
+baseurl = "ksone.net"
 title = "ThiRsty Day"
 theme = "hugo-theme-cleanwhite"
 languageCode = "ko-kr"
@@ -8,7 +8,7 @@ googleAnalytics = "UA-131114985-2"
 preserveTaxonomyNames = true
 paginate = 5 #frontpage pagination
 hasCJKLanguage = true
-
+enableRobotsTXT = true
 
 
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
@@ -106,7 +106,7 @@ notAlternative = true
 vars = ["title", "summary", "date", "publishdate", "expirydate", "permalink"]
 params = ["categories", "tags"] 
 
-enableRobotsTXT = true
+
 
 [sitemap]
 changefreq = "hourly"
