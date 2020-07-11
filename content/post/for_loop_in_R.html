@@ -1,7 +1,7 @@
 ---
 title: "[Tip] R에서 for loop가 좋지 않다고?"
 author: "Sangwon"
-date: "2020-01-05"
+date: "2020-06-17"
 categories: [R]
 tags: ["R", "for", "loop", "tip", "foreach", "병렬프로그래밍"]
 showtoc : false
@@ -9,8 +9,7 @@ showtoc : false
 
 
 
-<p>루프문은 모든 프로그래밍의 기본이 되죠. 최적화나 자동화처럼 반복적인 작업들이 필요할때 우리는 for loop를 찾게 됩니다.
-하지만 이런 for loop가 r에서 속도저하를 일으킬 수 있다는 사실을 알고계신가요?</p>
+<p>루프문은 모든 프로그래밍의 기본이 되죠. 최적화나 자동화처럼 반복적인 작업들이 필요할때 우리는 for loop를 찾게 됩니다. 하지만 이런 for loop가 r에서 속도저하를 일으킬 수 있다는 사실을 알고계신가요?</p>
 <div id="데이터-집합을-증가시키지-말자." class="section level5">
 <h5>1) 데이터 집합을 증가시키지 말자.</h5>
 <p>데이터를 생산하는 과정에서 for loop를 사용한다면 아래와 같은 오류를 범할 수 있습니다. 1부터 100,000의 순열을 벡터로 생성하는 3가지 케이스에 대해 살펴봅시다.</p>
@@ -36,16 +35,16 @@ system.time(test1()) </code></pre>
 <pre class="r"><code># Case 2 test
 system.time(test2()) </code></pre>
 <pre><code>##  사용자  시스템 elapsed 
-##       0       0       0</code></pre>
+##    0.02    0.00    0.01</code></pre>
 <pre class="r"><code># Case 3 test
 system.time(test3()) </code></pre>
 <pre><code>##  사용자  시스템 elapsed 
-##   12.44    0.05   12.49</code></pre>
+##    9.69    0.03    9.78</code></pre>
 <pre class="r"><code># sapply case
 x = 1:100000
 system.time(y &lt;- sapply(x, function(i) i))</code></pre>
 <pre><code>##  사용자  시스템 elapsed 
-##    0.05    0.00    0.04</code></pre>
+##    0.06    0.00    0.07</code></pre>
 <p>저는 컴퓨터의 성능 때문에 사전할당한 것도 0에 가깝게 나오지만, 수를 늘려서 다시 해보면 test1이 2보다 더 빠르게 나옵니다. 여유공간을 미리 할당해놓는 것이 속도적으로 좋은 성능을 보여줄 수 있습니다.</p>
 </div>
 <div id="비효율적인-프로그래밍" class="section level5">
@@ -65,10 +64,13 @@ system.time(for (i in 2:10000000) {
   if(x[i]&lt;cmin) cmin &lt;-x[i]
 })</code></pre>
 <pre><code>##  사용자  시스템 elapsed 
-##    0.40    0.00    0.41</code></pre>
+##    0.52    0.00    0.52</code></pre>
 <p>base 함수들은 좋은 성능을 냅니다. Rccp(c언어)의 for loop는 좋은 성능을 내며 속도 문제의 대안이 되고 있습니다. 어찌됐든 모든 문제는 간단하게 해결될 수 있는지 생각해봐야 합니다.</p>
 </div>
 <div id="여담-및-결론" class="section level5">
 <h5>여담 및 결론</h5>
 <p>foreach(병렬프로그래밍)를 사용할때도 속도저하가 발생되는 경우가 있는데요. 바로 병목현상입니다. 루프를 두개 씌웠을때 다른 루프의 처리를 기다려야 할때 속도가 for보다 더 느리게 나오는 경우가 발생합니다. 보통 느려지는 경우가 있더라도 대부분 for loop는 기본적이며 빠르게 생각해낼수 있는 아이디어가 됩니다. 만약 우리의 for loop가 속도가 느리다고 느껴진다면 간단하게 생각할 수 없는지 고민해봐야 합니다.</p>
+
 </div>
+
+<style>.bmc-button img{height: 34px !important;width: 35px !important;margin-bottom: 1px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}.bmc-button{padding: 7px 15px 7px 10px !important;line-height: 35px !important;height:51px !important;text-decoration: none !important;display:inline-flex !important;color:#ffffff !important;background-color:#FF813F !important;border-radius: 5px !important;border: 1px solid transparent !important;padding: 7px 15px 7px 10px !important;font-size: 20px !important;letter-spacing:-0.08px !important;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Lato', sans-serif !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#ffffff !important;}</style><link href="https://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext" rel="stylesheet"><a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/ksone"><img src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" alt="Buy me a book"><span style="margin-left:5px;font-size:19px !important;">Buy me a book</span></a>
