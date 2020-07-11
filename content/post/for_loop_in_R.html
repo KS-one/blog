@@ -1,7 +1,7 @@
 ---
 title: "[Tip] R에서 for loop가 좋지 않다고?"
 author: "Sangwon"
-date: "2020-06-17"
+date: "2020-01-05"
 categories: [R]
 tags: ["R", "for", "loop", "tip", "foreach", "병렬프로그래밍"]
 showtoc : false
@@ -35,11 +35,11 @@ system.time(test1()) </code></pre>
 <pre class="r"><code># Case 2 test
 system.time(test2()) </code></pre>
 <pre><code>##  사용자  시스템 elapsed 
-##    0.02    0.00    0.01</code></pre>
+##       0       0       0</code></pre>
 <pre class="r"><code># Case 3 test
 system.time(test3()) </code></pre>
 <pre><code>##  사용자  시스템 elapsed 
-##    9.69    0.03    9.78</code></pre>
+##    9.37    0.02    9.42</code></pre>
 <pre class="r"><code># sapply case
 x = 1:100000
 system.time(y &lt;- sapply(x, function(i) i))</code></pre>
@@ -57,20 +57,19 @@ set.seed(1)
 x &lt;- runif(10000000)
 system.time(min(x))</code></pre>
 <pre><code>##  사용자  시스템 elapsed 
-##    0.01    0.00    0.02</code></pre>
+##    0.02    0.00    0.02</code></pre>
 <pre class="r"><code># for loop for min
 cmin &lt;- x[1]
 system.time(for (i in 2:10000000) {
   if(x[i]&lt;cmin) cmin &lt;-x[i]
 })</code></pre>
 <pre><code>##  사용자  시스템 elapsed 
-##    0.52    0.00    0.52</code></pre>
+##    0.42    0.00    0.42</code></pre>
 <p>base 함수들은 좋은 성능을 냅니다. Rccp(c언어)의 for loop는 좋은 성능을 내며 속도 문제의 대안이 되고 있습니다. 어찌됐든 모든 문제는 간단하게 해결될 수 있는지 생각해봐야 합니다.</p>
 </div>
 <div id="여담-및-결론" class="section level5">
 <h5>여담 및 결론</h5>
 <p>foreach(병렬프로그래밍)를 사용할때도 속도저하가 발생되는 경우가 있는데요. 바로 병목현상입니다. 루프를 두개 씌웠을때 다른 루프의 처리를 기다려야 할때 속도가 for보다 더 느리게 나오는 경우가 발생합니다. 보통 느려지는 경우가 있더라도 대부분 for loop는 기본적이며 빠르게 생각해낼수 있는 아이디어가 됩니다. 만약 우리의 for loop가 속도가 느리다고 느껴진다면 간단하게 생각할 수 없는지 고민해봐야 합니다.</p>
 
+<style>.bmc-button img{height: 34px !important;width: 35px !important;margin-bottom: 1px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}.bmc-button{padding: 7px 15px 7px 10px !important;line-height: 35px !important;height:51px !important;text-decoration: none !important;display:inline-flex !important;color:#FFFFFF !important;background-color:#FF813F !important;border-radius: 5px !important;border: 1px solid transparent !important;padding: 7px 15px 7px 10px !important;font-size: 22px !important;letter-spacing: 0.6px !important;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Cookie', cursive !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#FFFFFF !important;}</style><link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet"><a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/ksone"><img src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" alt="Buy me a book"><span style="margin-left:5px;font-size:28px !important;">Buy me a book</span></a>
 </div>
-
-<style>.bmc-button img{height: 34px !important;width: 35px !important;margin-bottom: 1px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}.bmc-button{padding: 7px 15px 7px 10px !important;line-height: 35px !important;height:51px !important;text-decoration: none !important;display:inline-flex !important;color:#ffffff !important;background-color:#FF813F !important;border-radius: 5px !important;border: 1px solid transparent !important;padding: 7px 15px 7px 10px !important;font-size: 20px !important;letter-spacing:-0.08px !important;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Lato', sans-serif !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#ffffff !important;}</style><link href="https://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext" rel="stylesheet"><a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/ksone"><img src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" alt="Buy me a book"><span style="margin-left:5px;font-size:19px !important;">Buy me a book</span></a>

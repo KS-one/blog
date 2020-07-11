@@ -1,7 +1,7 @@
 ---
 title: "[Tip] R에서 for loop가 좋지 않다고?"
 author: "Sangwon"
-date: "`r format(Sys.Date())`"
+date: "2020-01-05"
 categories: [R]
 tags: ["R", "for", "loop", "tip", "foreach", "병렬프로그래밍"]
 showtoc : false
