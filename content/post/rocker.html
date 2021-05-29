@@ -11,12 +11,12 @@ showtoc : false
 <p>빅데이터 분석기사 실기 준비에 있어서 제공되는 패키지를 설정하기 위해 가상환경을 이용해 보려 합니다.</p>
 <div id="docker란" class="section level5">
 <h5>1) DOCKER란</h5>
-<p>DOKER는 공통된 환경에서 작업을 하기 위한 도구입니다. 저는 프로젝트 관리를 위해 가상환경을 만드는 툴으로 생각하고 있는데, 위키 백과에서는 프로세스 격리기술을 사용해 컨테이너로 실행하고 관리하는 오픈 소스 프로젝트라고 정의합니다. 컨테이너를 운반하는 작업을(프로젝트를 실행) 위해 필요한 것을 담는다고 생각하면 쉽겠죠? 관심이 생겨 더 이해하고 싶으면 <a href="https://subicura.com/2017/01/19/docker-guide-for-beginners-1.html" class="uri">https://subicura.com/2017/01/19/docker-guide-for-beginners-1.html</a> 링크에서 보시기 바랍니다. 설명이 잘 되어있습니다.</p>
+<p>DOKER는 공통된 환경에서 작업을 하기 위한 도구입니다. 저는 프로젝트 관리를 위해 가상환경을 만드는 툴로 생각하고 있는데, 위키 백과에서는 프로세스 격리기술을 사용해 컨테이너로 실행하고 관리하는 오픈 소스 프로젝트라고 정의합니다. 쉬운 표현으로는 컨테이너를 운반하는 작업을(프로젝트를 실행) 위해 필요한 것을 담는다고 생각하면 이해가 쉬울까요? 관심이 생겨 더 이해하고 싶으면 <a href="https://subicura.com/2017/01/19/docker-guide-for-beginners-1.html" class="uri">https://subicura.com/2017/01/19/docker-guide-for-beginners-1.html</a> 링크에서 보시기 바랍니다. 설명이 잘 되어있습니다.</p>
 </div>
 <div id="rocker" class="section level5">
 <h5>2) ROCKER</h5>
 <p>rocker는 docker에서 r과 관련된 이미지들을 관리하는 project입니다. 주소는 <a href="https://www.rocker-project.org/" class="uri">https://www.rocker-project.org/</a>입니다. 컨테이너는 이미지들을 실행된 형태를 말하며 도커 이미지를 실행함을 통해 컨테이너가 running하게 된다고 이해하면 되겠습니다. 어쨋든 이미지를 로드하기 위한 환경을 구축해 볼까요?
-저는 우선 window 10 환경에서 시작했습니다. 설치에 있어서 진행한 프로세스를 설명드리면 다음과 같지만 환경에 따라 필요없는 부분도 있을 수 있습니다. 우선 <a href="https://docs.docker.com/get-started/">docker</a>를 설치합니다. 저는 설치부터 다음과 같은 에러가 발생했습니다. 이게 가상화 환경이 미사용으로 되어있어서 bios에서 설정해야 한다는 말인데 그렇지 않은 경우도 있습니다.(다음 에러메시지가 발생 하지 않으면 그냥 진행하면 된다는 말입니다) <img src="/post/rocker/bios_error.PNG" alt="bios" /> msi 메인보드에서는 보통 미사용으로 설정 되어 있어 msi bios 가상화 설정을 검색하여 수행했습니다. 이 부분을 확인하는 방법은 ctrl+alt+delete 누르고 작업관리자&gt;성능&gt;CPU 탭에서 가상화 부분을 보면 확인할 수 있습니다. 그 다음으로 발생한 문제는 wsl2 installation에 대한 문제입니다. <img src="/post/rocker/wsl_error.PNG" alt="wsl" /> 리눅스 기반의 프로젝트 툴이라 그런지 window subsystem for linux을 설치해달라고 하네요. 전에 사용할 땐 안그랬던거 같은데 말이에요. 설치해 봅시다. 설치는 <a href="https://docs.microsoft.com/ko-kr/windows/wsl/install-win10">마이크로소프트</a>의 내용을 보고 수행했습니다. 윈도우 시작창을 열고 명령 프롬포트(cmd)를 검색하여 킵니다. 거기에 이것을 입력해 주세요.
+저는 우선 window 10 환경에서 시작했습니다. 설치에 있어서 진행한 프로세스를 설명드리면 다음과 같지만 환경에 따라 필요없는 부분도 있을 수 있습니다. 우선 1) <a href="https://docs.docker.com/get-started/">docker</a>를 설치합니다. 저는 설치부터 다음과 같은 에러가 발생했습니다. 이게 가상화 환경이 미사용으로 되어있어서 bios에서 설정해야 한다는 말인데 그렇지 않은 경우도 있습니다.(다음 에러메시지가 발생 하지 않으면 그냥 진행하면 된다는 말입니다) <img src="/post/rocker/bios_error.PNG" alt="bios" /> msi 메인보드에서는 보통 미사용으로 설정 되어 있어 msi bios 가상화 설정을 검색하여 수행했습니다. 이 부분을 확인하는 방법은 ctrl+alt+delete 누르고 작업관리자&gt; 성능&gt; CPU 탭에서 가상화 부분을 보면 확인할 수 있습니다. 그 다음으로 발생한 문제는 wsl2 installation에 대한 문제입니다. <img src="/post/rocker/wsl_error.PNG" alt="wsl" /> 리눅스 기반의 프로젝트 툴이라 그런지 2) window subsystem for linux을 설치해달라고 하네요. 전에 사용할 땐 안그랬던거 같은데 일단 설치해 봅시다. 설치는 <a href="https://docs.microsoft.com/ko-kr/windows/wsl/install-win10">마이크로소프트</a>의 내용을 보고 수행했습니다. 윈도우 시작창을 열고 명령 프롬포트(cmd)를 검색하여 킵니다. 거기에 이것을 입력해 주세요.
 - dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
 - dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
 - wsl –set-default-version 2</p>
@@ -29,18 +29,4 @@ showtoc : false
 <li>docker run -e PASSWORD=원하는비밀번호 -p 8787:8787 kimsw561/bigdat:2
 그리고 인터넷 창에 <a href="http://localhost:8787/을" class="uri">http://localhost:8787/을</a> 입력하면 ID와 패스워드를 입력하라고 뜹니다. 그러면 id에는 rstudio 패스워드엔 입력하신 비밀번호를 넣어주시면 시험 환경인 R.version 3.6.0과 패키지 148개를 볼 수 있습니다!</li>
 </ul>
-<pre class="r"><code>summary(cars)</code></pre>
-<pre><code>##      speed           dist       
-##  Min.   : 4.0   Min.   :  2.00  
-##  1st Qu.:12.0   1st Qu.: 26.00  
-##  Median :15.0   Median : 36.00  
-##  Mean   :15.4   Mean   : 42.98  
-##  3rd Qu.:19.0   3rd Qu.: 56.00  
-##  Max.   :25.0   Max.   :120.00</code></pre>
-</div>
-<div id="including-plots" class="section level2">
-<h2>Including Plots</h2>
-<p>You can also embed plots, for example:</p>
-<p><img src="/ksone.netpost/rocker_files/figure-html/pressure-1.png" width="672" /></p>
-<p>Note that the <code>echo = FALSE</code> parameter was added to the code chunk to prevent printing of the R code that generated the plot.</p>
 </div>
